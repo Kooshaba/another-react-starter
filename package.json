@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --content-base ./public --hot"
+    "dev": "NODE_ENV='development' webpack-dev-server --content-base ./public --hot",
+    "test": "mocha --compilers js:babel-register --require ./test/setup.js 'test/**/*.@(js|jsx)'",
+    "test:watch": "npm run test -- --watch --watch-extensions jsx"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +29,11 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "babel-register": "^6.9.0",
+    "chai": "^3.5.0",
+    "jsdom": "^9.2.1",
+    "mocha": "^2.5.3",
+    "react-addons-test-utils": "^15.1.0",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
   }

@@ -1,5 +1,5 @@
-module.exports = {
-  entry:  ['webpack/hot/dev-server', './assets/index.js'],
+var config = {
+  entry:  ['./src/Index.js'],
   output: {
     path:      __dirname + '/public',
     filename: 'build/bundle.js',
@@ -23,3 +23,9 @@ module.exports = {
     modulesDirectories: [__dirname + "/node_modules"]
   }
 };
+
+if(process.env.NODE_ENV === 'development') {
+  config.entry.unshift('webpack/hot/dev-server');
+}
+
+module.exports = config;

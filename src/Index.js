@@ -3,16 +3,10 @@ import ReactDOM  from 'react-dom'
 
 import { Router, hashHistory } from 'react-router'
 
-import { createStore, applyMiddleware } from 'redux'
-import { Provider }                     from 'react-redux'
-import thunk                            from 'redux-thunk'
-
-import Reducer     from './Reducers/Reducer'
 import Application from './Components/Application/Application.jsx'
 import Main        from './Components/Main/Main.jsx'
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
-const store = createStoreWithMiddleware(Reducer)
+import { renderInRedux } from './Utils'
 
 const routes = {
   path: '#',
@@ -25,12 +19,12 @@ const routes = {
 class Index extends React.Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router history={hashHistory} routes={routes} />
-      </Provider>
+      renderInRedux(<Router history={hashHistory} routes={routes} />)
     )
   }
 }
+
+export default Index
 
 ReactDOM.render(
   <Index/>,
